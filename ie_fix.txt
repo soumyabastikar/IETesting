@@ -1,0 +1,24 @@
+Enter Name: <input type="text" id="inputName" [ngClass]="{'readOnly':itemReadOnly}" name="value" (blur)="onBlurHandler()" />
+<button (click)="itemReadOnly = !itemReadOnly" [disabled]="!itemReadOnly" (click)="onEdit()">Edit</button>
+
+.readOnly {
+    pointer-events: none;
+} 
+
+
+itemReadOnly = false;
+
+  onBlurHandler() {
+    const inputEl = <HTMLInputElement>document.getElementById('inputName');
+    inputEl.readOnly = true;
+    this.itemReadOnly = true;
+    console.log('readOnly'+inputEl.readOnly);
+    if(inputEl.readOnly){
+      inputEl.blur();
+    }
+  }
+
+  onEdit(){
+    const inputEl = <HTMLInputElement>document.getElementById('inputName');
+    inputEl.readOnly = false;
+  }
